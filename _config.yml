@@ -30,18 +30,10 @@ Description: This will go over the installation of Docker through the inital use
 
 # You should now be able to test and see if compose is available using the command: docker-compose --version
 
-For this situation I choose Lab 2 Option B - WordPress Server. [Website(s) used https://upcloud.com/community/tutorials/wordpress-with-docker/]
+Option A: OpenVAS/Greenborne Docker
 
-1. Install Docker (Instructions above); Make sure to have curl command line utility (curl -V)
-   Should be preinstalled for most Linux distributions, but if not, use sudo apt-get install curl (For Debian and Ubuntu)
+1) Installing the contianer has the command [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas]
 
-2. Pre-install MariaDB for a relational database management system (replacement for MySQL)
-   A) Input command mkdir ~/wordpress && cd ~/wordpress # To store files
-   B) docker run -e MYSQL_ROOT_PASSWORD=<password> -e MYSQL_DATABASE=wordpress --name wordpressdb -v "$PWD/database":/var/lib/mysql -d mariadb:latest
-      # B)'s Command Is based on setting up the enviornment of MariaDB, replace <password> with your own password
-   C) Confirm that the MariaDB container is working correctly with the command [docker ps]
-   D) Now install WordPress with Docker using the command [docker pull wordpress]
+2) 
    
-
-
-
+         
