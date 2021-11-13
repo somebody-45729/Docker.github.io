@@ -1,1 +1,36 @@
 theme: jekyll-theme-minimal
+Description: This will go over the installation of Docker through the inital use of Ubuntu and then through a different number of options in regards for the project.
+
+# Comments and Complaints marked by #
+# Again, this is for installing on an Ubuntu Server terminal
+
+1. sudo apt update # The first command from here
+
+2. sudo apt install ca-certificates curl gnupg lsb-release
+
+3. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+4. echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
+         https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/nul
+
+5. sudo apt update
+
+6. sudo apt install docker-ce docker-ce-cli containerd.io
+
+7. sudo usermod -aG docker admin  # Last step but an issue I had at first was the "admin" input, replace "admin" with your username that you use for Ubuntu
+
+# 7 is the last command for installing on an Ubuntu Server
+
+# From here we install Docker Compose;
+# Since we will assume that we didn't choose the Windows/Mac version the steps are that follows for Linux
+
+1. sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+2. sudo chmod +x /usr/local/bin/docker-compose
+
+# You should now be able to test and see if compose is available using the command: docker-compose --version
+
+
+
+
+
