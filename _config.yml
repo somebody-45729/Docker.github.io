@@ -32,8 +32,16 @@ Description: This will go over the installation of Docker through the inital use
 
 Option A: OpenVAS/Greenborne Docker
 
-1) Installing the contianer has the command [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas]
+Inital steps: 1) sudo apt-get update 2) sudo apt-get upgrade 3) sudo apt-get install docker.io
+(From the given links in Harvey; 
+https://utulsa.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=75912983-0806-47a5-a3ad-acc9018aaec3 
+https://github.com/mikesplain/openvas-docker)
 
-2) 
+
+1) Installing the contianer has the command [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas] (Please wait 10-20 minutes during this time)
+
+2) Now go to your local web browser and enter https://localhost and you will get a warning for potential security risk.
+   Go to the advanced button and click to continue and you will enter the webpage for OpenVAS/Greenborne;
+   Username and Password are both "Admin"
    
          
