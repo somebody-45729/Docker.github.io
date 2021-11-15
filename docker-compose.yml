@@ -1,2 +1,12 @@
 # Docker Run converted to docker-compose
-Original is 
+Original is [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas]
+
+Which is then converted to the following:
+
+version: '3.3'
+services:
+    openvas:
+        ports:
+            - '443:443'
+        container_name: openvas
+        image: mikesplain/openvas
