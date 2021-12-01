@@ -1,37 +1,59 @@
-## Welcome to GitHub Pages
+theme: jekyll-theme-minimal
+Description: This will go over the installation of Docker through the inital use of Ubuntu and then through a different number of options in regards for the project.
 
-You can use the [editor on GitHub](https://github.com/somebody-45729/somebody-45729.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+# Comments and Complaints marked by #
+# Again, this is for installing on an Ubuntu Server terminal
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1. sudo apt update # The first command from here
 
-### Markdown
+2. sudo apt install ca-certificates curl gnupg lsb-release
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+3. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-```markdown
-Syntax highlighted code block
+4. echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] 
+         https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/nul
 
-# Header 1
-## Header 2
-### Header 3
+5. sudo apt update
 
-- Bulleted
-- List
+6. sudo apt install docker-ce docker-ce-cli containerd.io
 
-1. Numbered
-2. List
+7. sudo usermod -aG docker admin  # Last step but an issue I had at first was the "admin" input, replace "admin" with your username that you use for Ubuntu
 
-**Bold** and _Italic_ and `Code` text
+# 7 is the last command for installing on an Ubuntu Server
 
-[Link](url) and ![Image](src)
-```
+# From here we install Docker Compose;
+# Since we will assume that we didn't choose the Windows/Mac version the steps are that follows for Linux
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+1. sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-### Jekyll Themes
+2. sudo chmod +x /usr/local/bin/docker-compose
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/somebody-45729/somebody-45729.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+# You should now be able to test and see if compose is available using the command: docker-compose --version
 
-### Support or Contact
+Option A: OpenVAS/Greenborne Docker
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Inital steps: 1) sudo apt-get update 2) sudo apt-get upgrade 3) sudo apt-get install docker.io
+(From the given links in Harvey; 
+https://utulsa.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=75912983-0806-47a5-a3ad-acc9018aaec3 
+https://github.com/mikesplain/openvas-docker)
+
+
+1) Installing the contianer has the command [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas] (Please wait 10-20 minutes during this time)
+
+2) Now go to your local web browser and enter https://localhost and you will get a warning for potential security risk.
+   Go to the advanced button and click to continue and you will enter the webpage for OpenVAS/Greenborne;
+   Username and Password are both "Admin"
+   
+         
+# Docker Run converted to docker-compose
+Original is [sudo docker run -d -p 443:443 --name openvas mikesplain/openvas]
+
+Which is then converted to the following:
+
+version: '3.3'
+services:
+    openvas:
+        ports:
+            - '443:443'
+        container_name: openvas
+        image: mikesplain/openvas
